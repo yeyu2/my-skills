@@ -1,11 +1,11 @@
-# Episode 17: `/vault-loop` Agent Skill
+# `/vault-loop` Agent Skill
 
 An installable Agent Skill (`vault-loop`) for Cursor and Claude Code that exposes the **`/vault-loop` slash command** to turn any Obsidian or Markdown folder into a self-verifying state machine.
 
 Instead of running Python scripts by hand or hoping the agent remembers your rules, you type:
 
 ```text
-/vault-loop episodes/17-vault-loop-engineering/example-vault compile raw/2026-10-22-rfc-worker-lease-timeout.md
+/vault-loop vault-loop/example-vault compile raw/2026-10-22-rfc-worker-lease-timeout.md
 ```
 
 Because `SKILL.md` sets `disable-model-invocation: true`, the skill only runs when you explicitly force it with `/vault-loop`. When invoked, the agent automatically:
@@ -29,9 +29,21 @@ Clone the repository and copy the skill into your project or user skills directo
 git clone https://github.com/yeyu2/my-skills.git
 cd my-skills
 
-# Project-scoped (already installed in this repo at .cursor/skills/vault-loop)
-cp -R episodes/17-vault-loop-engineering/vault-loop .cursor/skills/
+# Project-scoped
+cp -R vault-loop/vault-loop .cursor/skills/
 
 # Or personal global skill (available across all repos)
-cp -R episodes/17-vault-loop-engineering/vault-loop ~/.cursor/skills/
+cp -R vault-loop/vault-loop ~/.cursor/skills/
+```
+
+## Running the Manual Verification Test
+
+To verify that the snapshot checker rejects note deletions:
+
+```bash
+cd vault-loop
+python3 vault-loop/scripts/vault_check.py draft example-vault
+rm example-vault.draft/decisions/adr-001-queue-retry.md
+python3 vault-loop/scripts/vault_check.py verify example-vault.draft
+rm -rf example-vault.draft example-vault/.vault-check
 ```

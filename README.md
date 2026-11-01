@@ -1,12 +1,21 @@
-# Agent harness engineering
+# My Skills
 
-Runnable code, benchmarks, and Agent Skills for the Agent Harness Engineering video series. Each episode lives in its own folder under `episodes/`.
+Production-grade Agent Skills and hands-on engineering tutorials for Cursor, Claude Code, and autonomous coding agents.
 
-## Episodes
+## Skills
 
-| Episode | Topic | Folder | Takeaway / Command |
-| :--- | :--- | :--- | :--- |
-| 14 | Context-isolated maker-checker graph. Runs the generator and verifier in separate OS processes and passes state through files on disk. | [`episodes/14-context-isolation/`](episodes/14-context-isolation/) | `python3 episodes/14-context-isolation/orchestrator.py` |
-| 15 | Folding subagents into progressive skills. Compares subagent sprawl, a flat single-loop fold, and progressive skills with `model_map` delegation across six tasks. | [`episodes/15-fold-subagents/`](episodes/15-fold-subagents/) | `python3 episodes/15-fold-subagents/skill_gate.py check` |
-| 16 | The seven-subsystem coding harness. Unified harness policy across shell and typed tools with cache prefix locking, AST layer linter, and planted-defect gate. | [`episodes/16-seven-subsystem-harness/`](episodes/16-seven-subsystem-harness/) | `python3 episodes/16-seven-subsystem-harness/harness_check.py verify` |
-| 17 | Markdown vault as agent state (`vault-loop` Skill). An installable Agent Skill that stages edits in a `.draft` copy and verifies them against a snapshot before promoting. | [`episodes/17-vault-loop-engineering/`](episodes/17-vault-loop-engineering/) | `cp -R episodes/17-vault-loop-engineering/vault-loop ~/.cursor/skills/` |
+| # | Skill | Description | Folder | Install Command |
+| :---: | :--- | :--- | :--- | :--- |
+| 1 | **vault-loop** | Verified Markdown vault state machine for Obsidian and compounding agent memory. Stages edits in `.draft`, blocks note deletions and human prose edits, and verifies against a snapshot before promoting. | [`vault-loop/`](vault-loop/) | `cp -R vault-loop/vault-loop ~/.cursor/skills/` |
+
+## How to Install Skills
+
+Clone this repository and copy the target skill folder into your project's `.cursor/skills/` (for project-scoped skills) or `~/.cursor/skills/` (for personal global skills across all repos):
+
+```bash
+git clone https://github.com/yeyu2/my-skills.git
+cd my-skills
+
+# Install vault-loop globally
+cp -R vault-loop/vault-loop ~/.cursor/skills/
+```
