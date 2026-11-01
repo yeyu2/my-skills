@@ -1,0 +1,13 @@
+# Internal Studio Workspace
+_studio/
+
+# Python caches & virtual environments
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# OS & Editor files
+.DS_Store
+*.draft/
+.vault-check/
