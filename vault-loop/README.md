@@ -1,6 +1,6 @@
 # `/vault-loop` Agent Skill
 
-An installable Agent Skill (`vault-loop`) for Cursor and Claude Code that exposes the **`/vault-loop` slash command** to turn any Obsidian or Markdown folder into a self-verifying state machine.
+An installable Agent Skill (`vault-loop`) for Claude Code, Cursor, Codex, and other autonomous coding agents that exposes the **`/vault-loop` slash command** to turn any Obsidian or Markdown folder into a self-verifying state machine.
 
 Instead of running Python scripts by hand or hoping the agent remembers your rules, you type:
 
@@ -21,19 +21,72 @@ Because `SKILL.md` sets `disable-model-invocation: true`, the skill only runs wh
 - `vault-loop/scripts/vault_check.py`: Standard-library snapshot verifier invoked automatically by the agent.
 - `example-vault/`: Minimal 6-file Markdown vault (`raw/`, `concepts/webhook-backpressure.md`, `decisions/adr-001-queue-retry.md`, `index.md`, `log.md`).
 
-## Install the `/vault-loop` Slash Command
+## Installation
 
-Clone the repository and copy the skill into your project or user skills directory:
+Clone the repository first:
 
 ```bash
 git clone https://github.com/yeyu2/my-skills.git
 cd my-skills
+```
+
+Then install into your agent client:
+
+### Claude Code (`cc`)
+
+```bash
+# Global (all projects)
+mkdir -p ~/.claude/skills
+cp -R vault-loop/vault-loop ~/.claude/skills/
 
 # Project-scoped
-cp -R vault-loop/vault-loop .cursor/skills/
+mkdir -p .claude/skills
+cp -R vault-loop/vault-loop .claude/skills/
+```
 
-# Or personal global skill (available across all repos)
+### Cursor
+
+```bash
+# Global (all projects)
+mkdir -p ~/.cursor/skills
 cp -R vault-loop/vault-loop ~/.cursor/skills/
+
+# Project-scoped
+mkdir -p .cursor/skills
+cp -R vault-loop/vault-loop .cursor/skills/
+```
+
+### OpenAI Codex
+
+```bash
+# Global (all projects)
+mkdir -p ~/.codex/skills
+cp -R vault-loop/vault-loop ~/.codex/skills/
+
+# Project-scoped
+mkdir -p .codex/skills
+cp -R vault-loop/vault-loop .codex/skills/
+```
+
+### Other Agents (OpenCode, Kiro, Hermes)
+
+```bash
+# OpenCode
+mkdir -p ~/.config/opencode/skills
+cp -R vault-loop/vault-loop ~/.config/opencode/skills/
+
+# Kiro
+mkdir -p ~/.kiro/skills
+cp -R vault-loop/vault-loop ~/.kiro/skills/
+
+# Hermes
+mkdir -p ~/.hermes/skills
+cp -R vault-loop/vault-loop ~/.hermes/skills/
+```
+
+Or install via `skills.sh`:
+```bash
+npx skills add yeyu2/my-skills --skill vault-loop
 ```
 
 ## Running the Manual Verification Test
